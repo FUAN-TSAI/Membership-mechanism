@@ -14,13 +14,15 @@
 
 [V] add new / Models / Infrastructures / Repositories / MemberRepository
 
-[working on]會員按下email裡的確認連結 , MembersController.ConfirmRegister(), Service.ActiveRegister()
+***新會員 Email 確認功能***
 
-[working on] modify IMemberRepository  add Load(), ActiveRegister()
-[working on] modify MemberRepository  add Load(), ActiveRegister()
-[working on] modify MemberService . ActiveRegister
+[V] 會員按下email裡的確認連結 , MembersController.ConfirmRegister(), Service.ActiveRegister()
+[V] Views / Members / ConfirmRegister
+[V] modify IMemberRepository  add Load(), ActiveRegister()
+[V] modify MemberRepository  add Load(), ActiveRegister()
+[V] modify MemberService . ActiveRegister
 
-
+[working on]password 要編碼
 
 
 

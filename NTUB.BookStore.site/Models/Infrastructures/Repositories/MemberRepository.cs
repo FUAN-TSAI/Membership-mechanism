@@ -25,7 +25,7 @@ namespace NTUB.BookStore.site.Models.Infrastructures.Repositories
 			Member member = new Member
 			{
 				Account = entity.Account,
-				Password = entity.Password,
+				Password = entity.EncryptedPassword, //entity.
 				Email = entity.Email,
 				Name = entity.Name,
 				Mobile = entity.Mobile,

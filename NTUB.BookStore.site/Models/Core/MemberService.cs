@@ -30,7 +30,8 @@ namespace NTUB.BookStore.site.Models.Core
 			{
 				return new RegisterResponse { IsSuccess = false, ErrorMessage = "帳號已經存在" };
 			}
-			//
+
+			//真正地建立一個會員
 			string confirmCode = Guid.NewGuid().ToString("N");
 
 			MemberEntity entity = new MemberEntity
