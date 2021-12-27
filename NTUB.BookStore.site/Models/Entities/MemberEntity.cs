@@ -23,7 +23,6 @@ namespace NTUB.BookStore.site.Models.Entities
 				return result;
 			}
 		}
-
 		public string Name { get; set; }
 
          public string Email { get; set; }

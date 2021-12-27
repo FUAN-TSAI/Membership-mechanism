@@ -22,9 +22,11 @@
 [V] modify MemberRepository  add Load(), ActiveRegister()
 [V] modify MemberService . ActiveRegister
 
-[working on]password 要編碼
+***password 要編碼***
 
-
+[working on] add new / Models / Infrastructures / HashUtility.cs
+[working on] 修改MemberEntity, add EnctryptedPassword property
+[working on] 修改MemberRepository, 改成取用 EncryptedPassword property
 
 []發信還沒寫
 []password 要編碼

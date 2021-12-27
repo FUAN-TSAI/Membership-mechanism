@@ -18,13 +18,13 @@ namespace NTUB.BookStore.site.Models.ViewModels
 
         [Display(Name = "密碼")]
         [Required]
-        [StringLength(50)]
+        [StringLength(70)]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
         [Display(Name = "確認密碼")]
         [Required]
-        [StringLength(50)]
+        [StringLength(70)]
         [Compare(nameof(Password))]
         [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }
