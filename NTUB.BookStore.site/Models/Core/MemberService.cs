@@ -1,5 +1,8 @@
 ﻿using NTUB.BookStore.site.Models.Core.Interfaces;
+using NTUB.BookStore.site.Models.DTOs;
+using NTUB.BookStore.site.Models.EFModels;
 using NTUB.BookStore.site.Models.Entities;
+using NTUB.BookStore.site.Models.Infrastructures;
 using NTUB.BookStore.site.Models.Infrastructures.Repositories;
 using NTUB.BookStore.site.Models.UseCases;
 using System;
@@ -63,6 +66,23 @@ namespace NTUB.BookStore.site.Models.Core
 
 			repository.ActiveRegister(memberId);
 
+		}
+
+		public LoginResponse Login(string account,string password)
+		{
+			MemberEntity member = repository.Load(account);
+			if(member == null)
+			{
+				return LoginResponse.Fail("帳密有誤");
+			}
+			if(member.IsConfirmed == false)
+			{
+				return LoginResponse.Fail("會員資格尚未確認");
+			}
+			string encryptedPwd = HashUtility.ToSHA256(password, MemberEntity.SALT);
+			return (string.CompareOrdinal(member.Password, encryptedPwd) == 0)
+				? LoginResponse.Success()
+				: LoginResponse.Fail("帳密有誤");
 		}
 	}
 }

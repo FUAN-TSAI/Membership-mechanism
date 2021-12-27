@@ -24,12 +24,30 @@
 
 ***password 要編碼***
 
-[working on] add new / Models / Infrastructures / HashUtility.cs
-[working on] 修改MemberEntity, add EnctryptedPassword property
-[working on] 修改MemberRepository, 改成取用 EncryptedPassword property
+[V] add new / Models / Infrastructures / HashUtility.cs
+[V] 修改MemberEntity, add EnctryptedPassword property
+[V] 修改MemberRepository, 改成取用 EncryptedPassword property
+[V] 修改Members table, column Password, feom nvarchar(50) to nvarchar(70)
+[V] 同步修改 / Models / EFModels / Members.cs 裡的 Password data annotation
+
+***登入/登出網站***
+
+[working on] modify web.config, add authenthcation node
+[working on] modify MemberController . About , add " Authorize " attribute
+[working on] add MembersController.Logout()
+[working on] add / Models / ViewModels / LoginVM.cs
+[working on] add MembersController.Login(),and create "Login" view page
+[working on] add / Models / DTOs / LoginResponse.cs
+[working on] add MemberRepository.Login(account)
+[working on] add MemberService.Login(account,password)
+[working on] add MemberController.Login() httppost action 使用表單驗證，寫入 cookie
+
+[working on] modify _Layout page, add " Login / logout " links 
+
+
+
 
 []發信還沒寫
-[]password 要編碼
 
 [] implement RegisterCommamd.Execute()
 [] implement MemberService.CreateNewMember()

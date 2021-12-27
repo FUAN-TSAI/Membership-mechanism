@@ -135,6 +135,7 @@
     </Compile>
     <Compile Include="Models\Core\Interfaces\IMemberRepository.cs" />
     <Compile Include="Models\Core\MemberService.cs" />
+    <Compile Include="Models\DTOs\LoginResponse.cs" />
     <Compile Include="Models\EFModels\AppDbContext.cs" />
     <Compile Include="Models\EFModels\Member.cs" />
     <Compile Include="Models\Entities\MemberEntity.cs" />
@@ -144,6 +145,7 @@
     <Compile Include="Models\UseCases\RegisterCommand.cs" />
     <Compile Include="Models\UseCases\RegisterRequest.cs" />
     <Compile Include="Models\UseCases\RegisterResponse.cs" />
+    <Compile Include="Models\ViewModels\LoginVM.cs" />
     <Compile Include="Models\ViewModels\RegisterVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -186,6 +188,7 @@
     <Content Include="Views\Members\Register.cshtml" />
     <Content Include="Views\Members\RegisterConfirm.cshtml" />
     <Content Include="Views\Members\ActiveRegister.cshtml" />
+    <Content Include="Views\Members\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

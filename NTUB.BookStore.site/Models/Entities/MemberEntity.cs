@@ -8,7 +8,8 @@ namespace NTUB.BookStore.site.Models.Entities
 {
 	public class MemberEntity
 	{
-        public int Id { get; set; }
+		public const string SALT = "!@#$%%$#@SFGG";
+		public int Id { get; set; }
 
          public string Account { get; set; }
 
@@ -18,7 +19,7 @@ namespace NTUB.BookStore.site.Models.Entities
 		{
 			get
 			{
-				string salt = "!@#$%%$#@SFGG";
+				string salt = SALT;
 				string result = HashUtility.ToSHA256(this.Password, salt);
 				return result;
 			}

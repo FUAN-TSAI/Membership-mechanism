@@ -13,6 +13,7 @@ namespace NTUB.BookStore.site.Models.Core.Interfaces
 		void Create(MemberEntity entity);
 
 		MemberEntity Load(int memberId);
+		MemberEntity Load(string account);
 
 		void ActiveRegister(int memberId);	
 	}

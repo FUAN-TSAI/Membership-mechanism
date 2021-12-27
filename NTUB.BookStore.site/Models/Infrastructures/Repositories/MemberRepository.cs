@@ -51,9 +51,38 @@ namespace NTUB.BookStore.site.Models.Infrastructures.Repositories
 
 		public MemberEntity Load(int memberId)
 		{
-			Member entity = db.Members.SingleOrDefault(x =>x.Id == memberId);
+			return db.Members
+				.SingleOrDefault(x =>x.Id == memberId)
+				.ToEntity();
 
-			MemberEntity result = new MemberEntity
+			//Member entity = db.Members.SingleOrDefault(x =>x.Id == memberId);
+			//MemberEntity result = new MemberEntity
+			//{
+			//	Id = entity.Id,
+			//	Account = entity.Account,
+			//	Password = entity.Password,
+			//	Email = entity.Email,
+			//	Name = entity.Name,
+			//	Mobile = entity.Mobile,
+			//	IsConfirmed = entity.IsConfirmed,
+			//	ConfirmCode = entity.ConfirmCode
+			//};
+			//return result;
+		}
+
+		public MemberEntity Load(string account)
+		{
+			return db.Members
+				.SingleOrDefault(x => x.Account == account)
+				.ToEntity();
+		}
+	}
+
+	public static class MemberExts    //寫成擴充方法
+	{
+		public static MemberEntity ToEntity(this Member entity)
+		{
+			return new MemberEntity
 			{
 				Id = entity.Id,
 				Account = entity.Account,
@@ -64,7 +93,6 @@ namespace NTUB.BookStore.site.Models.Infrastructures.Repositories
 				IsConfirmed = entity.IsConfirmed,
 				ConfirmCode = entity.ConfirmCode
 			};
-			return result;
 		}
 	}
 
