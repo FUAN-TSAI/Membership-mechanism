@@ -46,8 +46,13 @@
 
 ***會員中心***
 
-[]修改個人基本資料
-[]變更密碼
+[working on] 會員中心頁( / Members / Index )
+
+		改 web.config
+		add MmeberController . Index(), Index view page
+
+[working on] 修改個人基本資料( / Members / EditProfile /)
+[] 變更密碼(/ Members / ResetPassword /)
 
 
 []發信還沒寫

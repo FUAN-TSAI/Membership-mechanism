@@ -22,8 +22,14 @@ namespace NTUB.BookStore.site.Controllers
 		{
             service = new MemberService();
 		}
-		// GET: Members
-		public ActionResult Register()
+
+		public ActionResult Index()
+        {
+            return View();
+        }
+
+        // GET: Members
+        public ActionResult Register()
         {
             return View();
         }
