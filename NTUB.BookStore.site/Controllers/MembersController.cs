@@ -1,6 +1,7 @@
 ﻿using NTUB.BookStore.site.Models.Core;
 using NTUB.BookStore.site.Models.Core.Interfaces;
 using NTUB.BookStore.site.Models.DTOs;
+using NTUB.BookStore.site.Models.Entities;
 using NTUB.BookStore.site.Models.Infrastructures.Repositories;
 using NTUB.BookStore.site.Models.UseCases;
 using NTUB.BookStore.site.Models.ViewModels;
@@ -23,7 +24,8 @@ namespace NTUB.BookStore.site.Controllers
             service = new MemberService();
 		}
 
-		public ActionResult Index()
+        [Authorize]
+        public ActionResult Index()
         {
             return View();
         }
@@ -117,14 +119,102 @@ namespace NTUB.BookStore.site.Controllers
 
             return url;
 		}
-        
 
+        [Authorize]
         public ActionResult Logout()
 		{
             Session.Abandon();
             FormsAuthentication.SignOut();
-            return Redirect("Members/Login");
+            return Redirect("/Members/Login");
 		}
 
-	}
+        [Authorize]
+        public ActionResult EditProfile()
+        {
+            string currentUserAccount = User.Identity.Name;
+            MemberEntity entity = repo.Load(currentUserAccount);
+            EditProfileVM model = entity.ToEditProfileVM();
+            return View(model);
+        }
+
+        [Authorize]
+        [HttpPost]
+
+        public ActionResult EditProfile(EditProfileVM model)
+        {
+            string currentUserAccount = User.Identity.Name;
+
+            if (ModelState.IsValid == false)
+			{
+                return View(model);
+            }
+
+            UpdateProfileRequest request = model.ToRequest(currentUserAccount);
+			try
+			{
+                service.UpdateProfile(request);
+			}
+            catch (Exception ex)
+			{
+                ModelState.AddModelError(string.Empty,ex.Message);
+			}
+
+            if(ModelState.IsValid == true)
+			{
+				if (string.Compare(User.Identity.Name, model.Account) == 0)
+				{
+                    //沒有變動Account
+                    return RedirectToAction("Index");
+				}
+				else
+				{
+                    return RedirectToAction("Logout");
+				}
+			}
+			else
+			{
+                return View(model);
+			}
+            
+        }
+
+        [Authorize]
+        public ActionResult EditPassword()
+		{
+            return View();
+		}
+
+        [Authorize]
+        [HttpPost]
+
+        public ActionResult EditPassword(EditPasswordVM model)
+        {
+            string currentUserAccount = User.Identity.Name;
+
+            if (ModelState.IsValid == false)
+            {
+                return View(model);
+            }
+
+            ChangePasswordRequest request = model.ToRequest(currentUserAccount);
+            try
+            {
+                service.ChangePassword(request);
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, ex.Message);
+            }
+
+            if (ModelState.IsValid == true)
+            {
+
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(model);
+            }
+        }
+    }
 }
