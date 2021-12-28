@@ -32,23 +32,25 @@
 
 ***登入/登出網站***
 
-[working on] modify web.config, add authenthcation node
-[working on] modify MemberController . About , add " Authorize " attribute
-[working on] add MembersController.Logout()
-[working on] add / Models / ViewModels / LoginVM.cs
-[working on] add MembersController.Login(),and create "Login" view page
-[working on] add / Models / DTOs / LoginResponse.cs
-[working on] add MemberRepository.Login(account)
-[working on] add MemberService.Login(account,password)
-[working on] add MemberController.Login() httppost action 使用表單驗證，寫入 cookie
+[V] modify web.config, add authenthcation node
+[V] modify MemberController . About , add " Authorize " attribute
+[V] add MembersController.Logout()
+[V] add / Models / ViewModels / LoginVM.cs
+[V] add MembersController.Login(),and create "Login" view page
+[V] add / Models / DTOs / LoginResponse.cs
+[V] add MemberRepository.Login(account)
+[V] add MemberService.Login(account,password)
+[V] add MemberController.Login() httppost action 使用表單驗證，寫入 cookie
 
-[working on] modify _Layout page, add " Login / logout " links 
+[V] modify _Layout page, add " Login / logout " links 
 
+***會員中心***
 
+[]修改個人基本資料
+[]變更密碼
 
 
 []發信還沒寫
-
-[] implement RegisterCommamd.Execute()
-[] implement MemberService.CreateNewMember()
 [] add SendEmail Utility (at / Models / Infrastructures / EmailHelper.cs)
+
+[]忘記密碼
