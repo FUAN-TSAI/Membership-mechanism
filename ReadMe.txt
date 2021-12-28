@@ -46,12 +46,31 @@
 
 ***會員中心***
 
-[working on] 會員中心頁( / Members / Index )
+[V] 會員中心頁( / Members / Index )
 
-		改 web.config
-		add MmeberController . Index(), Index view page
+	[] 改 web.config
+	[] add MmeberController . Index(), Index view page
 
 [working on] 修改個人基本資料( / Members / EditProfile /)
+
+	[] add / ViewModels / EditProfileVM.cs (Id/Account/Name/Email/Mobile)
+	[] add / MembersController . EditProfile(),add " EditProfile " view page(修改view page)
+	[] 寫 MembersController . EditProfile(),
+	[] 新增 / Models / ViewModels / EditProfileVM (ToEditProfileVM擴充方法)
+	[] add / Models / DTOs / UpdateProfileRequest class(Id/Account/Name/Email/Mobile) 
+	[] 寫 MembersController . EditProfile(EditProfileVM model)
+	[] UpdateProfileRequest class 加入 string " CurrentUserAccount " property
+	[] add MemberService.UpdateProfile(UpdateProfileRequest)
+	[] modify IMemberRepository => add IsExists(account,excluedId),Update(MemberEntity)
+	[] 如果更新個資成功，且有改帳號，就自動轉向到 logout page
+
+	
+	
+	
+	
+
+
+
 [] 變更密碼(/ Members / ResetPassword /)
 
 

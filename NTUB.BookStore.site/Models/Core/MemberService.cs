@@ -84,5 +84,27 @@ namespace NTUB.BookStore.site.Models.Core
 				? LoginResponse.Success()
 				: LoginResponse.Fail("帳密有誤");
 		}
+
+		public void UpdateProfile(UpdateProfileRequest request)
+		{
+			// todo 驗證傳入的屬性值是否正確
+
+			//取得在db裡的原始紀錄
+			MemberEntity entity = repository.Load(request.CurrentUserAccount);
+			if (entity == null) throw new Exception("找不到要修改的會員紀錄");
+
+			//判斷新帳號是否被別人使用過了
+			bool isExists = repository.IsExist(request.Account, entity.Id);
+			if (isExists) throw new Exception("帳號被別人使用了，無法變更");
+
+			//更新紀錄
+			entity.Name=request.Name;
+			entity.Email=request.Email;
+			entity.Mobile=request.Mobile;
+			entity.Account=request.Account;
+
+			repository.Update(entity);
+
+		}
 	}
 }

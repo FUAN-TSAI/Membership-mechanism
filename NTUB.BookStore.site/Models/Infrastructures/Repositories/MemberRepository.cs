@@ -20,6 +20,23 @@ namespace NTUB.BookStore.site.Models.Infrastructures.Repositories
 			db.SaveChanges();
 		}
 
+		/// <summary>
+		/// 不會更新密碼欄位(更新密碼另外寫)
+		/// </summary>
+		/// <param name="entity"></param>
+		public void Update(MemberEntity entity)
+		{
+			var member = db.Members.Find(entity.Id);
+
+			member.Account = entity.Account;
+			member.Email = entity.Email;
+			member.Name = entity.Name;
+			member.Mobile = entity.Mobile;
+			member.IsConfirmed = entity.IsConfirmed;
+			member.ConfirmCode = entity.ConfirmCode;
+
+			db.SaveChanges();
+		}
 		public void Create(MemberEntity entity)
 		{
 			Member member = new Member
@@ -49,6 +66,12 @@ namespace NTUB.BookStore.site.Models.Infrastructures.Repositories
 			}
 		}
 
+		public bool IsExist(string account, int excludeId)
+		{
+			var entity = db.Members.SingleOrDefault(x => x.Id!=excludeId&& x.Account == account);
+			return entity != null; //帳號別人已使用過，已經存在
+		}
+
 		public MemberEntity Load(int memberId)
 		{
 			return db.Members
@@ -76,6 +99,8 @@ namespace NTUB.BookStore.site.Models.Infrastructures.Repositories
 				.SingleOrDefault(x => x.Account == account)
 				.ToEntity();
 		}
+
+		
 	}
 
 	
