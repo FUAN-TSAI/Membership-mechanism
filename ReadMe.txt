@@ -64,7 +64,7 @@
 	[] modify IMemberRepository => add IsExists(account,excluedId),Update(MemberEntity)
 	[] 如果更新個資成功，且有改帳號，就自動轉向到 logout page
 
-[working on] 變更密碼(/ Members / ResetPassword /)
+[V] 變更密碼(/ Members / ResetPassword /)
 	[] add / ViewModels / EditPasswordVM
 	[] add / MembersController . EditPassword(),add " EditPassword " view page
 	[] add / Models / DTOs / ChangePasswordRequest class (CurrentUserAccount/NewPassword/OriginalPassword)
@@ -72,10 +72,10 @@
 	[] add MemberService.ChangePasswordt(ChangePasswordRequest)
 	[] add IMemberRepository . UpdatePassword()
 
-[working on] /Member / Index / , EditProfile, EditPassword, Logout 要加 [Authorize] 
+[V] /Member / Index / , EditProfile, EditPassword, Logout 要加 [Authorize] 
 
 
-[]發信還沒寫
+[working on]發信
 	[] add SendEmail Utility (at / Models / Infrastructures / EmailHelper.cs)
 
 []忘記密碼
