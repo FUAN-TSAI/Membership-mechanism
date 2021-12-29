@@ -16,7 +16,7 @@ namespace NTUB.BookStore.site.Models.Core.Interfaces
 		MemberEntity Load(string account);
 
 		void ActiveRegister(int memberId);	
-		void Update(MemberEntity entity);
-		void UpdatePassword(MemberEntity entity);
+		void Update(MemberEntityWithoutPassword entity);
+		void UpdatePassword(int memberId, string encryptedPassword);
 	}
 }

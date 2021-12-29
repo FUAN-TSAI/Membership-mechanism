@@ -19,12 +19,7 @@ namespace NTUB.BookStore.site.Models.Infrastructures.Repositories
 			member.ConfirmCode = null;
 			db.SaveChanges();
 		}
-
-		/// <summary>
-		/// 不會更新密碼欄位(更新密碼另外寫)
-		/// </summary>
-		/// <param name="entity"></param>
-		public void Update(MemberEntity entity)
+		public void Update(MemberEntityWithoutPassword entity)
 		{
 			var member = db.Members.Find(entity.Id);
 
@@ -38,11 +33,11 @@ namespace NTUB.BookStore.site.Models.Infrastructures.Repositories
 			db.SaveChanges();
 		}
 
-		public void UpdatePassword(MemberEntity entity)
+		public void UpdatePassword(int memberId,string encryptedPassword)
 		{
-			var member = db.Members.Find(entity.Id);
+			var member = db.Members.Find(memberId);
 
-			member.Password = entity.Password;
+			member.Password = encryptedPassword;
 		
 			db.SaveChanges();
 		}

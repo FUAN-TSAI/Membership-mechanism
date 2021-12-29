@@ -124,7 +124,7 @@ namespace NTUB.BookStore.site.Models.Core
 			//更新紀錄
 			entity.Password = HashUtility.ToSHA256(request.NewPassword, MemberEntity.SALT);
 			
-			repository.UpdatePassword(entity);
+			repository.UpdatePassword(entity.Id,entity.Password);
 		}
 	}
 }
