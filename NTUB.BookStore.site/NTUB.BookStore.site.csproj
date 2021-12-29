@@ -142,6 +142,7 @@
     <Compile Include="Models\EFModels\Member.cs" />
     <Compile Include="Models\Entities\MemberEntity.cs" />
     <Compile Include="Models\Entities\RegisterEntity.cs" />
+    <Compile Include="Models\Infrastructures\EmailHelper.cs" />
     <Compile Include="Models\Infrastructures\HashUtility.cs" />
     <Compile Include="Models\Infrastructures\Repositories\MemberExts.cs" />
     <Compile Include="Models\Infrastructures\Repositories\MemberRepository.cs" />
@@ -150,8 +151,10 @@
     <Compile Include="Models\UseCases\RegisterResponse.cs" />
     <Compile Include="Models\ViewModels\EditPasswordVM.cs" />
     <Compile Include="Models\ViewModels\EditProfileVM.cs" />
+    <Compile Include="Models\ViewModels\ForgetPasswordVM.cs" />
     <Compile Include="Models\ViewModels\LoginVM.cs" />
     <Compile Include="Models\ViewModels\RegisterVM.cs" />
+    <Compile Include="Models\ViewModels\ResetPasswordVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -197,6 +200,9 @@
     <Content Include="Views\Members\Index.cshtml" />
     <Content Include="Views\Members\EditProfile.cshtml" />
     <Content Include="Views\Members\EditPassword.cshtml" />
+    <Content Include="Views\Members\ForgetPassword.cshtml" />
+    <Content Include="Views\Members\ConfirmForgetPassword.cshtml" />
+    <Content Include="Views\Members\ResetPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

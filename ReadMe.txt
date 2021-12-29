@@ -75,7 +75,18 @@
 [V] /Member / Index / , EditProfile, EditPassword, Logout 要加 [Authorize] 
 
 
-[working on]發信
+[V]發信
 	[] add SendEmail Utility (at / Models / Infrastructures / EmailHelper.cs)
 
-[]忘記密碼
+[working on]忘記密碼
+	[] add / Views / Login.cshtml (忘記密碼的超連結)
+	[] add / Models / ViewModels / ForgetPasswordVM 
+	[] add / MembersController . ForgetPassword(), add " ForgetPassword " view page
+	[] 寫 MembersController . ForgetPassword(ForgetPasswordVM model)
+	[] add / Views / ConfirmForgetPassword.cshtml
+	[] add MemberService . RequestResetPassword(string account, string email, string urlTemplate)
+	[] MembersController . ForgetPassword(ForgetPasswordVM model)加入回傳網址
+	[] add / Models / ViewModels / ResetPasswordVM (新密碼、 確認新密碼)
+	[] add / MembersController . ResetPassword(int memberId, string confirmCode),add " ResetPassword " view page
+	[] 寫 MembersController . ResetPassword(int memberId, string confirmCode,ResetPasswordVM model)
+	[] add MemberService . ResetPassword(int memberId,string confirmCode,string newPassword)

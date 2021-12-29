@@ -216,5 +216,64 @@ namespace NTUB.BookStore.site.Controllers
                 return View(model);
             }
         }
+
+        public ActionResult ForgetPassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+
+        public ActionResult ForgetPassword(ForgetPasswordVM model)
+        {
+            if(ModelState.IsValid == false)
+			{
+                return View(model);
+            }
+			try
+			{
+                string urlTemplate = Request.Url.Scheme + "://" + Request.Url.Authority + Url.Content("~/") + "Members/ResetPassword?memberid={0}&confirmCode={1}";
+
+                service.RequestResetPassword(model.Account, model.Email,urlTemplate);
+                return View("ConfirmForegtPassword");
+			}
+            catch(Exception ex)
+			{
+                ModelState.AddModelError(string.Empty,ex.Message);
+			}
+
+            return View(model);
+        }
+
+		public ActionResult ResetPassword (int memberId,string confirmCode)
+		{
+            return View();
+		}
+
+        [HttpPost]
+
+        public ActionResult ResetPassword(int memberId, string confirmCode,ResetPasswordVM model)
+        {
+            if(ModelState.IsValid == false)
+			{
+                return View(model);
+			}
+			try
+			{
+                service.ResetPassword(memberId, confirmCode, model.Passward);
+			}
+            catch (Exception ex)
+			{
+                ModelState.AddModelError (string.Empty,ex.Message);
+			}
+            if(ModelState.IsValid == false)
+			{
+                return View(model);
+			}
+			else
+			{
+                return View("ResetPasswordConfirm");
+			}
+        }
     }
 }

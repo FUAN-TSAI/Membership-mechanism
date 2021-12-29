@@ -15,6 +15,8 @@ namespace NTUB.BookStore.site.Models.Core
 	public class MemberService
 	{
 		private readonly IMemberRepository repository;
+		private string urlTemplate;
+
 		public MemberService()
 		{
 			this.repository = new MemberRepository();
@@ -125,6 +127,64 @@ namespace NTUB.BookStore.site.Models.Core
 			entity.Password = HashUtility.ToSHA256(request.NewPassword, MemberEntity.SALT);
 			
 			repository.UpdatePassword(entity.Id,entity.Password);
+		}
+
+		public void RequestResetPassword(string account, string email, string urlTemplate)
+		{
+			//todo 檢查傳入參數的合理性
+
+			//檢查account,email正確性
+			MemberEntity entity = repository.Load(account);
+
+			if (entity == null)
+			{
+				throw new Exception("帳號或Email錯誤");
+			}
+			if(string.Compare(email, entity.Email) != 0)
+			{
+				throw new Exception("帳號或Email錯誤");
+			}
+
+			//檢查IsConfirmed必須是true
+			if (entity.IsConfirmed == false)
+			{
+				throw new Exception("您還沒有啟用本帳號，請先完成才能重設密碼");
+			}
+
+			//更新紀錄,填入confirmCode
+			string confirmCode=Guid.NewGuid().ToString("N");
+			entity.ConfirmCode=confirmCode;
+			repository.Update(entity);
+
+			//發email
+			string url = string.Format(urlTemplate, entity.Id, confirmCode);
+			new EmailHelper().SendForgetPasswordEmail(url,entity.Name,email);
+		}
+
+		public void ResetPassword(int memberId,string confirmCode,string newPassword)
+		{
+			// todo檢查傳入參數值是否合理
+
+			MemberEntity entity = repository.Load(memberId);
+			//檢查有沒有紀錄
+			if(entity == null)
+			{
+				throw new Exception("找不到相對應的會員紀錄");
+			}
+
+			//檢查confirmCode
+			if(string.Compare(confirmCode, entity.ConfirmCode) != 0)
+			{
+				throw new Exception("找不到相對應的會員紀錄");
+			}
+
+			//更新密碼
+			entity.Password = newPassword;
+			repository.UpdatePassword(memberId, entity.EncryptedPassword);
+
+			entity.ConfirmCode = null;
+			repository.Update(entity);
+
 		}
 	}
 }
